@@ -1,15 +1,20 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+/* Button Styles */
+button {
+  cursor: pointer;
 }
 
 .btn {
@@ -46,16 +51,56 @@ code {
   transform: scaleX(1);
 }
 
+/* Button As a Link */
+.btn-link {
+  background-color: inherit;
+  border: none;
+  color: blue;
+  font-size: 1.5rem;
+  text-decoration: underline;
+  margin: 8px;
+  padding: 8px;
+}
+
+/* Input styles */
 input {
+  width: 75%;
   font-size: medium;
   text-align: center;
   padding: 12px;
   margin: 4px;
   outline: none;
+  background-color: white;
   border: 2px solid cyan;
   border-radius: 20px;
 }
 
-input:focus, input:hover{
+input:focus,
+input:hover {
   background-color: #ccc;
+}
+
+/* Form styles */
+.form {
+  width: 30vw;
+  border: 2px solid black;
+  border-radius: 50px;
+  padding: 40px;
+  background-color: #aaa;
+  box-shadow: 20px 20px 20px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.form > .form-elt {
+  padding: 5px;
+  margin: 5px;
+}
+
+.form > .form-title {
+  text-transform: uppercase;
+  margin: 0 0 30px 0;
 }

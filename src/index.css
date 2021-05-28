@@ -121,6 +121,10 @@ td {
   padding: 0.75rem;
 }
 
+th {
+  text-transform: uppercase;
+}
+
 .table-title {
   margin: 0;
   padding: 1rem;

@@ -1,8 +1,8 @@
 import React from "react";
 
 class Register extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       name: "",
       email: "",
@@ -11,38 +11,36 @@ class Register extends React.Component {
     };
   }
 
-  onNameChange = (event) => {
-    this.setState({ name: event.target.value });
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
   };
 
-  onEmailChange = (event) => {
-    this.setState({ email: event.target.value });
-  };
-
-  onCollegeChange = (event) => {
-    this.setState({ college: event.target.value });
-  };
-
-  onPasswordChange = (event) => {
-    this.setState({ password: event.target.value });
-  };
-
-  onSubmit = () => {
+  onSubmitRegister = async () => {
     const { name, email, college, password } = this.state;
 
-    fetch("http://localhost:4000/register", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name,
-        email,
-        college,
-        password,
-      }),
-    })
-      .then((response) => response.json())
-      .then((user) => console.log(user))
-      .catch((err) => console.log("Error"));
+    try {
+      const response = await fetch("http://localhost:4000/register", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          college,
+          password,
+        }),
+      });
+
+      if (response.ok) {
+        const user = await response.json();
+        this.props.loadUser(user);
+        this.props.routeChange("dashboard");
+      } else {
+        const error = await response.json();
+        console.log(error.message);
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   render() {
@@ -55,9 +53,8 @@ class Register extends React.Component {
           <input
             type="text"
             name="name"
-            id="name"
             placeholder="Name"
-            onChange={this.onNameChange}
+            onChange={this.handleChange}
           />
         </div>
 
@@ -65,9 +62,8 @@ class Register extends React.Component {
           <input
             type="email"
             name="email"
-            id="email"
             placeholder="Email"
-            onChange={this.onEmailChange}
+            onChange={this.handleChange}
           />
         </div>
 
@@ -75,24 +71,22 @@ class Register extends React.Component {
           <input
             type="text"
             name="college"
-            id="college"
             placeholder="college"
-            onChange={this.onCollegeChange}
+            onChange={this.handleChange}
           />
         </div>
 
         <div className="form-elt">
           <input
             type="password"
-            name="pass"
-            id="pass"
+            name="password"
             placeholder="Password"
-            onChange={this.onPasswordChange}
+            onChange={this.handleChange}
           />
         </div>
 
         <div className="form-elt">
-          <button className="btn" onClick={this.onSubmit}>
+          <button className="btn" onClick={this.onSubmitRegister}>
             SignUp
           </button>
         </div>

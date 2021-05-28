@@ -7,7 +7,12 @@ const Navigation = (props) => {
   if (signedIn) {
     return (
       <nav>
-        <button className="btn-link" onClick={() => routeChange("login")}>
+        <button
+          className="btn-link"
+          style={{ color: "red" }}
+          onClick={() => routeChange("login")}
+        >
+          <i className="fas fa-sign-out-alt"></i>
           SignOut
         </button>
       </nav>

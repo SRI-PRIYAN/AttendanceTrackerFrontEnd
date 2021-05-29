@@ -126,10 +126,27 @@ th {
 }
 
 .table-title {
+  position: relative;
   margin: 0;
-  padding: 1rem;
+  padding: 1.5rem;
   text-transform: uppercase;
   text-align: center;
   background-color: rgb(136, 230, 82);
   border: 1px solid black;
+}
+
+.fa-check {
+  color: green;
+}
+
+.fa-times {
+  color: red;
+}
+
+.table-sub-title {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  font-size: 1rem;
 }

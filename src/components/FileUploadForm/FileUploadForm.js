@@ -7,8 +7,9 @@ const FileUploadForm = (props) => {
     classes,
     fileInputName,
     handleFileChange,
-    handleClassChange,
+    handleInputChange,
     handleSubmit,
+    isAttendanceFile,
   } = props;
 
   return (
@@ -18,7 +19,7 @@ const FileUploadForm = (props) => {
       <div className="form-elt">
         <ClassDropdown
           classes={classes}
-          handleClassChange={handleClassChange}
+          handleClassChange={handleInputChange}
         />
       </div>
 
@@ -26,6 +27,18 @@ const FileUploadForm = (props) => {
         <input type="file" name={fileInputName} onChange={handleFileChange} />
       </div>
 
+      {isAttendanceFile ? (
+        <div className="form-elt">
+          <input
+            type="number"
+            name="thresholdPercent"
+            placeholder="Threshold Percentage"
+            min="0"
+            max="100"
+            onChange={handleInputChange}
+          />
+        </div>
+      ) : null}
       <button className="btn" onClick={() => handleSubmit(fileInputName)}>
         Upload
       </button>

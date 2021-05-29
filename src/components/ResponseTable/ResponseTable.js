@@ -6,7 +6,10 @@ const ResposeTable = (props) => {
 
   return (
     <div>
-      <h2 className="table-title">{responseTable.title}</h2>
+      <h2 className="table-title">
+        {responseTable.title}
+        <span className="table-sub-title">{responseTable.subTitle}</span>
+      </h2>
       <table>
         <thead>
           <tr>
@@ -20,7 +23,20 @@ const ResposeTable = (props) => {
             return (
               <tr key={ind}>
                 {Object.values(row).map((data, ind) => {
-                  return <td key={ind}>{data}</td>;
+                  if (typeof data === "boolean") {
+                    if (data)
+                      return (
+                        <td key={ind}>
+                          <i className="fas fa-check"></i>
+                        </td>
+                      );
+                    else
+                      return (
+                        <td key={ind}>
+                          <i className="fas fa-times"></i>
+                        </td>
+                      );
+                  } else return <td key={ind}>{data}</td>;
                 })}
               </tr>
             );

@@ -34,6 +34,7 @@ class Dashboard extends React.Component {
       className: "",
       studentFile: null,
       attendanceFile: null,
+      thresholdPercent: 75,
       responseTable: {
         title: "",
         table: [],
@@ -91,7 +92,7 @@ class Dashboard extends React.Component {
   };
 
   uploadFile = async (fileName) => {
-    const { className } = this.state;
+    const { className, thresholdPercent } = this.state;
     if (
       this.state[fileName] === null ||
       className.trim() === "" ||
@@ -101,6 +102,10 @@ class Dashboard extends React.Component {
 
     const formData = new FormData();
     formData.append("className", className);
+
+    if (fileName === "attendanceFile")
+      formData.append("threshold_percent", thresholdPercent);
+
     formData.append("user", JSON.stringify(this.props.user));
     formData.append(fileName, this.state[fileName]);
 
@@ -195,8 +200,9 @@ class Dashboard extends React.Component {
             classes={user.classes}
             fileInputName="studentFile"
             handleFileChange={this.handleFileChange}
-            handleClassChange={this.handleChange}
+            handleInputChange={this.handleChange}
             handleSubmit={this.uploadFile}
+            isAttendanceFile={false}
           />
         </Modal>
 
@@ -210,8 +216,9 @@ class Dashboard extends React.Component {
             classes={user.classes}
             fileInputName="attendanceFile"
             handleFileChange={this.handleFileChange}
-            handleClassChange={this.handleChange}
+            handleInputChange={this.handleChange}
             handleSubmit={this.uploadFile}
+            isAttendanceFile={true}
           />
         </Modal>
       </React.Fragment>

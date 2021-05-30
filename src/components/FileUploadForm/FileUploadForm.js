@@ -31,8 +31,8 @@ const FileUploadForm = (props) => {
         <div className="form-elt">
           <input
             type="number"
-            name="thresholdPercent"
-            placeholder="Threshold Percentage"
+            name="threshold_percent"
+            placeholder="Threshold Percent"
             min="0"
             max="100"
             onChange={handleInputChange}

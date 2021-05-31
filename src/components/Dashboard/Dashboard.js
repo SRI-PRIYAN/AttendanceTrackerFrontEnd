@@ -75,14 +75,17 @@ class Dashboard extends React.Component {
     if (this.state.className.trim() === "") return;
 
     try {
-      const response = await fetch("http://localhost:4000/createNewClass", {
-        method: "post",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify({
-          user: this.props.user,
-          className: this.state.className,
-        }),
-      });
+      const response = await fetch(
+        "https://attendance-tracker-heroku.herokuapp.com/createNewClass",
+        {
+          method: "post",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify({
+            user: this.props.user,
+            className: this.state.className,
+          }),
+        }
+      );
 
       if (response.ok) {
         const classes = await response.json();
@@ -118,10 +121,13 @@ class Dashboard extends React.Component {
     formData.append(fileName, this.state[fileName]);
 
     try {
-      const response = await fetch(`http://localhost:4000/upload/${fileName}`, {
-        method: "post",
-        body: formData,
-      });
+      const response = await fetch(
+        `https://attendance-tracker-heroku.herokuapp.com/upload/${fileName}`,
+        {
+          method: "post",
+          body: formData,
+        }
+      );
 
       if (response.ok) {
         const responseTable = await response.json();
@@ -141,17 +147,20 @@ class Dashboard extends React.Component {
   handleQuery = async (endpoint) => {
     try {
       console.log(`className: ${this.state.className}`);
-      const response = await fetch(`http://localhost:4000/${endpoint}`, {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
+      const response = await fetch(
+        `https://attendance-tracker-heroku.herokuapp.com/${endpoint}`,
+        {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
 
-        body: JSON.stringify({
-          user: this.props.user,
-          className: this.state.className,
-          lecture_id: this.state.lecture_id,
-          threshold_percent: this.state.threshold_percent,
-        }),
-      });
+          body: JSON.stringify({
+            user: this.props.user,
+            className: this.state.className,
+            lecture_id: this.state.lecture_id,
+            threshold_percent: this.state.threshold_percent,
+          }),
+        }
+      );
 
       if (response.ok) {
         const responseTable = await response.json();

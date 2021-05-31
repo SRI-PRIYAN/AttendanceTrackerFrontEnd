@@ -19,16 +19,19 @@ class Register extends React.Component {
     const { name, email, college, password } = this.state;
 
     try {
-      const response = await fetch("http://localhost:4000/register", {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          email,
-          college,
-          password,
-        }),
-      });
+      const response = await fetch(
+        "https://attendance-tracker-heroku.herokuapp.com/register",
+        {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name,
+            email,
+            college,
+            password,
+          }),
+        }
+      );
 
       if (response.ok) {
         const user = await response.json();

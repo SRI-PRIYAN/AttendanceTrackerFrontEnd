@@ -183,64 +183,68 @@ class Dashboard extends React.Component {
 
     return (
       <React.Fragment>
-        <h1 className="user">
-          <i className="fas fa-user-circle"> {user.name}</i>
-        </h1>
-
         <div className="container">
-          <ClassBar
-            classes={user.classes}
-            handleQuery={this.handleQuery}
-            setClassName={this.setClassName}
-          />
+          <header>
+            <h1 className="user">
+              <i className="fas fa-user-circle"> {user.name}</i>
+            </h1>
+          </header>
 
-          <div className="nested">
-            <div className="options">
-              <button
-                className="btn"
-                onClick={() => this.setActiveModal("newClass")}
-              >
-                Create New Class
-              </button>
+          <section>
+            <ClassBar
+              classes={user.classes}
+              handleQuery={this.handleQuery}
+              setClassName={this.setClassName}
+            />
 
-              <button
-                className="btn"
-                onClick={() => this.setActiveModal("studentUpload")}
-              >
-                Add/Update Students
-              </button>
+            <div>
+              <div className="options">
+                <button
+                  className="btn"
+                  onClick={() => this.setActiveModal("newClass")}
+                >
+                  Create New Class
+                </button>
 
-              <button
-                className="btn"
-                onClick={() => this.setActiveModal("attendanceUpload")}
-              >
-                Upload Attendance
-              </button>
+                <button
+                  className="btn"
+                  onClick={() => this.setActiveModal("studentUpload")}
+                >
+                  Add/Update Students
+                </button>
 
-              <button
-                className="btn"
-                onClick={() => this.setActiveModal("lectureList")}
-              >
-                Get Lecture List
-              </button>
+                <button
+                  className="btn"
+                  onClick={() => this.setActiveModal("attendanceUpload")}
+                >
+                  Upload Attendance
+                </button>
 
-              <button
-                className="btn"
-                onClick={() => this.setActiveModal("updateThreshold")}
-              >
-                Update Threshold
-              </button>
+                <button
+                  className="btn"
+                  onClick={() => this.setActiveModal("lectureList")}
+                >
+                  Get Lecture List
+                </button>
 
-              <button
-                className="btn"
-                onClick={() => this.setActiveModal("lectureAttendance")}
-              >
-                Lecture Attendance
-              </button>
+                <button
+                  className="btn"
+                  onClick={() => this.setActiveModal("updateThreshold")}
+                >
+                  Update Threshold
+                </button>
+
+                <button
+                  className="btn"
+                  onClick={() => this.setActiveModal("lectureAttendance")}
+                >
+                  Lecture Attendance
+                </button>
+              </div>
+
+              <ResponseTable responseTable={this.state.responseTable} />
             </div>
-
-            <ResponseTable responseTable={this.state.responseTable} />
-          </div>
+          </section>
         </div>
 
         <Modal

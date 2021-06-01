@@ -18,6 +18,10 @@
 
 .container {
   display: grid;
+}
+
+.container > section {
+  display: grid;
   grid-template-columns: 1fr 3fr;
 }
 
@@ -29,6 +33,8 @@
 }
 
 .class-bar > h1 {
+  font-size: 2rem;
+  text-transform: uppercase;
   margin: 0;
   padding: 1.5rem;
   border-bottom: 1px solid white;
